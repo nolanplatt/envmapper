@@ -7,7 +7,7 @@ envmapper implements OpenStreetMap, with customized artifacts and themes designe
 
 ### My Contributions:
 
-I created the entirety of the map frontend and backend, developed a significant portion of the backend in relation to the blog, authentication etc. I contribution to bootstrap themes, HTML, and JavaScript for the frontend in relation to the map, blog, authentication, and surveys. 
+I created the entirety of the map frontend and backend, developed a significant portion of the backend in relation to the blog, authentication etc. I contributed to bootstrap themes, HTML, and JavaScript for the frontend in relation to the map, blog, authentication, and surveys. 
 
 
 In the original repository (team repository), I was leading in commits, lines added/deleted, and was also the team leader.
