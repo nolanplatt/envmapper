@@ -5,7 +5,7 @@ Created with other AP Computer Science A students. An intuitive solution to envi
 envmapper implements OpenStreetMap, with customized artifacts and themes designed by Nolan Platt.
 
 
-# My Contributions:
+## My Contributions:
 
 I created the entirety of the map frontend and backend, developed a significant portion of the backend in relation to the blog, authentication etc. I contribution to bootstrap themes, HTML, and JavaScript for the frontend in relation to the map, blog, authentication, and surveys. 
 
