@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}"
+    lang="en">
+
+<head>
+    <div layout:fragment="metadata" th:remove="tag">
+        <!-- Start of head content specific to page -->
+        <title>Blog</title>
+        <!-- End of head content specific to page -->
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="css/mdb.min.css" rel="stylesheet">
+        <!-- Your custom styles (optional) -->
+        <link href="css/style.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/blog.css" />
+    </div>
+</head>
+
+<body>
+    <div layout:fragment="content" th:remove="tag">
+        <!-- Start of body content specific to page -->
+        <!--Main layout-->
+        <div class="pt-5">
+            <div class="container">
+                <section class="card wow fadeIn">
+                    <div class="card-body text-black text-center py-3 px-5 my-5">
+                        <h1 class="mb-4">
+                            <strong>Welcome to EnvMapper's Blog</strong>
+                        </h1>
+                        <p>
+                            <strong>View our many blogs on environmental safety and awareness</strong>
+                        </p>
+                        <a th:href="@{/newBlogForm}" class="">
+                            <button class="btn btn-sm btn-primary">
+                                Click here to create your own!
+                            </button>
+                        </a>
+                    </div>
+                    <!-- Content -->
+                </section>
+                <!--Section: Jumbotron-->
+
+                <hr class="my-5">
+
+                <!--Section: Cards-->
+                <section class="text-center ">
+                    <div class="row mb-4 wow fadeIn blog-container ">
+                        <!-- <div class="col-lg-4 col-md-12 mb-4"> -->
+                        <tr th:each="blog : ${listBlogs}">
+                            <div class="card mb-5">
+                                <div class="card-body">
+                                    <h4 class="card-title" th:text="${blog.title}"></h4>
+                                    <p class="card-text" th:text="${blog.author}"></p>
+                                    <p class="card-text" th:text="${blog.body}"></p>
+                                    <a th:href="@{/deleteBlog/{id}(id=${blog.id})}">
+                                        <button class="btn btn-danger">
+                                            Delete
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </tr>
+                        <!--/.Card-->
+
+                        <!-- </div> -->
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                </section>
+                <!--Section: Cards-->
+
+            </div>
+            <!--Main layout-->
+
+            <!-- SCRIPTS -->
+            <!-- JQuery -->
+            <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+            <!-- Bootstrap tooltips -->
+            <script type="text/javascript" src="js/popper.min.js"></script>
+            <!-- Bootstrap core JavaScript -->
+            <script type="text/javascript" src="js/bootstrap.min.js"></script>
+            <!-- MDB core JavaScript -->
+            <script type="text/javascript" src="js/mdb.min.js"></script>
+            <!-- Initializations -->
+            <script type="text/javascript">
+                // Animations initialization
+                new WOW().init();
+
+            </script>
+            <!-- End of body content specific to page -->
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}"
+    lang="en">
+
+<head>
+    <div layout:fragment="metadata" th:remove="tag">
+        <!-- Start of head content specific to page -->
+        <title>Create Blog</title>
+        <!-- End of head content specific to page -->
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="css/mdb.min.css" rel="stylesheet">
+        <!-- Your custom styles (optional) -->
+        <link href="css/style.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/blog.css" />
+
+        <style>
+            input[type=text],
+            textarea {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+
+            input[type=submit] {
+                width: 100%;
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+
+            .container {
+                border-radius: 5px;
+                /* background-color: #f2f2f2; */
+                padding: 20px;
+            }
+        </style>
+    </div>
+</head>
+
+<body>
+    <div layout:fragment="content" th:remove="tag">
+        <!-- Start of body content specific to page -->
+        <div class="container">
+            <form action="#" th:action="@{/saveBlog}" th:object="${blog}" method="POST">
+                <label for="fname" class="text-white">Blog Title</label>
+                <input required type="text" th:field="*{title}">
+
+                <label for="lname" class="text-white">Author Name</label>
+                <input required type="text" th:field="*{author}">
+
+                <label for="country" class="text-white">Content</label>
+                <textarea value="" required type="text" th:field="*{body}"
+                    placeholder="Enter blog content here"></textarea>
+
+                <!-- <button type="submit" class="btn btn-info col-2">Submit</button> -->
+                <input required type="submit" value="Submit">
+            </form>
+        </div>
+        <!-- End of body content specific to page -->
+    </div>
+</body>
+
+</html>

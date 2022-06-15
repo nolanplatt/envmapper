@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+:root{
+    --soft-yellow: #f5c390;
+    --orange: #ec9262;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html, body{
+    font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+    background: var(--soft-yellow) !important;
+    font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.9);
+}
+.page{
+    left: 0px;
+    width: 300px;
+    padding-left: 50px;
+    padding-top: 225px;
+    min-height: 140vh;
+    position: absolute;
+
+}
+.main-wrapper{
+    max-width: 1080px;
+    background: #f5e9e9;
+    width: 480px;
+    height: 925px;
+    border-radius: 25px ;
+}
+.solar-head{
+    background: var(--orange);
+    color: #f3e8bc;
+    display: flex;
+    align-items: center;
+    border-radius: 25px 25px 0px 0px;
+
+}
+.solar-head .solar-head{
+    padding: 1rem 1.6rem;
+    width: 100%;
+    cursor: pointer;
+
+}
+.active-head{
+    background: var(--orange);
+    border-radius: 25px 25px 0px 0px;
+}
+.solar-content{
+    padding: 2rem;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 0.5rem;
+
+}
+.form-grp{
+    padding: 0.55rem 0;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    align-items: center;
+
+}
+.form-grp.column{
+    display: grid;
+    grid-template-columns: 85px 1fr 2fr;
+    align-items: center;
+}
+.form-ctrl{
+    width: 100%;
+    font-size: 20px;
+    font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+    padding: 0.6rem 1.2rem;
+    margin: 0.2rem 0;
+    border: 1.5px solid rgba(0, 0, 0, 0.2);
+    border-radius: 100px;
+}
+.form-control:focus{
+    outline: 0;
+}
+.form-control::placeholder{
+    text-align: right;
+    opacity: 0.6;
+}
+.btns{
+    padding: 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btns .btn{
+    width: 140px;
+    margin: 0 0.5rem;
+    padding: 0.8rem 0;
+    font-family: inherit;
+    font-size: 20px;
+    border: none;
+    background: var(--orange);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    letter-spacing: 0.5px;
+    border-radius: 100px;
+}
+.btns .btn:hover{
+    outline: 0;
+    opacity: 0.75;
+}
+.btns .btn:focus{
+    outline: 0;
+}
+
+.alert-error{
+    font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 0rem;
+    color: var(--orange);
+    display: none;
+}
+
+h1 {
+    font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+    font-size: 30px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
+    min-height: 110vh;
+    position: absolute;
+    left: 200px;
+    width: 350px;
+    padding-top: 50px;
+    padding-left: 50px;
+}
+
+h2 {
+    font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+    font-size: 35px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+
+}
+h3 {
+    font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 15.4px; }
+
+p { font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 20px; }
+
+img{
+    position: absolute;
+    left: 10px;
+    padding-top: 0px;
+    padding-bottom: 10px;
+}
+
+.solar-output{
+    text-align: center;
+}
+
+label {
+    font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+    font-size: 20px;
+}
+
+.form-ctrl::placeholder{
+    font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
+    font-size: 20px;
+    text-align: right !important;
+    opacity: 0.5;
+}
+
+.output {
+    padding-top: 2rem;
+}

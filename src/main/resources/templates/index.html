@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}"
+    lang="en">
+
+<head>
+    <script src="js/core.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+
+
+    <div layout:fragment="metadata" th:remove="tag">
+        <title>EnvMapper | Home</title>
+    </div>
+
+
+</head>
+
+<body>
+    <div layout:fragment="content" th:remove="tag">
+
+        <div id="particles-js" style="z-index: 0"></div>
+
+        <div id="top" style="z-index: 5">
+            <h1 style="font-size:2vw">🌎Envmapper.tk</h1>
+            <!-- <iframe style="z-index: 10" width="560" height="315" src="https://www.youtube.com/embed/fWN3QKlc1u4 "
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe> -->
+        </div>
+
+        <div id="app">
+            <!-- Typerwriter.js Implementation-->
+            <div class="text-center" id="typewriter">
+            </div>
+            <!-- End Typewriter.js -->
+        </div>
+
+
+        <div layout:fragment="script" th:remove="tag">
+
+            <script src="/js/particles.js"></script>
+
+            <script>
+                particlesJS.load('particles-js', '/particlesjs-config.json', function () {
+                    console.log('callback - particles.js config loaded');
+                });
+            </script>
+
+
+            <script th:inline="javascript">
+                var app = document.getElementById('app');
+                var typewriter = new Typewriter(app, {
+                    loop: true
+                });
+                typewriter.typeString
+                    ('See how we are ... ')
+                    .typeString(' <strong><u>changing the world</u></strong>')
+                    .pauseFor(1200)
+                    .deleteChars(18)
+                    .typeString('<strong><u>saving the environment</u></strong>')
+                    .pauseFor(1200)
+                    .deleteChars(22)
+                    .typeString('<strong><u>encouraging others</u></strong>')
+                    .pauseFor(1200)
+                    .start();
+
+            </script>
+        </div>
+
+        <div class="container">
+            <!--
+
+            <div class="alert alert-success">
+                <strong>Success!</strong> Login Successful.
+            </div>
+
+            -->
+
+
+            <div class="slideshow">
+                <!-- Add Slideshow Here -->
+
+            </div>
+
+            <div class="commercial">
+                <!-- Add Commercial Here -->
+
+            </div>
+
+
+        </div>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    </div>
+</body>
+
+</html>

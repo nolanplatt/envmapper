@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}"
+    lang="en">
+
+<head>
+    <div layout:fragment="metadata" th:remove="tag">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Solar Calculator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/solar.css">
+    </div>
+</head>
+
+<body>
+    <div layout:fragment="content" th:remove="tag">
+
+        <img src="https://i.redd.it/bkievkdkds291.png" style="width:250px;height:250px;">
+
+        <h1>This calculator outputs the costs that you can save per month with Solar, given relevant user input</h1>
+
+        <div class="page">
+            <div class="main-wrapper">
+                <div class="solar-head">
+                    <div id="solar-c-head" class="solar-head active-head">
+                        <h2>Solar Calculator</h2>
+                    </div>
+                </div>
+
+                <div class="solar-contents">
+
+                    <div class="solar-content" id="solar-c">
+                        <form>
+                            <div>
+                                <p>Average Solar PVC Installation Cost: 14,700 USD</p>
+                            </div>
+                            <div>
+                                <p>Electricity Utility Costs: $0.199 / kWh (Local)</p>
+                            </div>
+                            <div>
+                                <p>Monthly Use of Electricity, per person: 893 kWh</p>
+                            </div>
+                            <div class="form-grp">
+                                <p class="mb-1">Number of Family Members</p>
+                                <input type="text" class="form-ctrl" placeholder="people" id="familyCount">
+                            </div>
+
+                            <div class="form-grp column">
+                                <p class="mb-1">Home Owner</p>
+                                <div>
+                                    <input type="radio" name="Homeowner" id="HOTrue" value="true" checked>
+                                    <label for="HOTrue">True</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="Homeowner" id="HOFalse" value="false">
+                                    <label for="HOFalse">False</label>
+                                </div>
+                            </div>
+
+                            <div class="form-grp column">
+                                <p class="mb-1">Electric Vehicle Owner</p>
+                                <div>
+                                    <input type="radio" name="EVOwner" id="EVTrue" value="true" checked>
+                                    <label for="EVFalse">True</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="EVOwner" id="EVFalse" value="false">
+                                    <label for="EVFalse">False</label>
+                                </div>
+                            </div>
+
+                            <div class="form-grp">
+                                <p class="mb-1">Number of EV's</p>
+                                <input type="text" class="form-ctrl" id="vehicles" placeholder="vehicles">
+                            </div>
+
+                            <div class="form-grp">
+                                <p class="mb-1">Year (Tax Credit)</p>
+                                <input type="text" class="form-ctrl" id="year" placeholder="i.e. 2022">
+                            </div>
+
+                            <div class="form-grp column">
+                                <p class="mb-1">Battery</p>
+                                <div>
+                                    <input type="radio" name="Battery" id="batteryTrue" value="true" checked>
+                                    <label for="batteryTrue">True</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="Battery" id="batteryFalse" value="false">
+                                    <label for="batteryFalse">False</label>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="btns">
+                    <button type="button" id="calc-btn" class="btn">Calculate</button>
+                    <button type="button" id="clr-btn" class="btn">Clear</button>
+                </div>
+
+                <div class="output">
+                    <span class="alert-error">Some inputs are invalid!</span>
+                    <div class="solar-output">
+                        <h3 id="solar-value"></h3>
+                        <p id="solar-category"></p>
+                        <p id="home-owner"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/js/solarScript.js"></script>
+    </div>
+</body>
+
+</html>

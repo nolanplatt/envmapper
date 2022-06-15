@@ -1,0 +1,355 @@
+<!DOCTYPE HTML>
+
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{layout}"
+  lang="en">
+
+<head>
+  <div layout:fragment="metadata" th:remove="tag">
+    <script src="js/core.js"></script>
+    <link rel="stylesheet" href="/css/map.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin="" />
+
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet" />
+
+
+
+    <title>EnvMapper | Map</title>
+  </div>
+
+
+</head>
+
+<body onload="call()">
+
+
+  <div layout:fragment="content" th:remove="tag">
+
+    <div id="particles-js"></div>
+
+    <div id="app" class="text-white">
+      <div class='sidebar'>
+        <div id='listings' class='listings'></div>
+      </div>
+      <div id="map" class="map"> </div>
+
+
+      <div class="boxes text-dark">
+        <div id="sideStatistics">
+          <h1>Statistics</h1>
+          <p id="totalReports">Number of Reports (all time): 0</p>
+          <p id="activeIssues">Number of Active Issues: 0</p>
+          <p id="completedIssues">Number of Completed Issues: 0</p>
+        </div>
+
+        <div id="report">
+          <h1>Report an Issue</h1>
+          <p><i>reports will be added at your current geographical location</i></p>
+          Issue Title (brief): <input id="title" type="text" name="issueTitle"><br>
+          Issue Description: <input id="description" type="text" name="issueDesc"><br>
+          Your Phone Number: <input id="contact" type="text" name="issueContact"><br>
+          Address of Issue: <input id="address" type="text" name="issueAddress"><br>
+          <input type="button" onclick="submitIssue()" value="Submit">
+        </div>
+
+        <div id="reportComplete">
+          <h1>Complete an Issue</h1>
+          <p><i>reports will be marked as completed after 2 reports</i></p>
+          Exact Issue Title: <input id="exactTitle" type="text" name="issueTitle"><br>
+          <input type="button" onclick="markComplete()" value="Submit">
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+
+  <div layout:fragment="script" th:remove="tag">
+
+
+    <script src="/js/particles.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" <script>
+      particlesJS.load('particles-js', '/particlesjs-config.json', function () {
+        console.log('callback - particles.js config loaded');
+      });
+    </script>
+
+    <script>
+
+      function submitIssue() {
+        var title = document.getElementById('title').value;
+        var description = document.getElementById('description').value;
+        var contact = document.getElementById('contact').value;
+        var address = document.getElementById('address').value;
+        navigator.geolocation.getCurrentPosition(function (position) {
+          let lat = position.coords.latitude;
+          let long = position.coords.longitude;
+          var latLong = lat + "--" + long;
+
+          axios({
+            method: "GET",
+            url: `/addIssue?title=${title}&description=${description}&contact=${contact}&address=${address}&latLong=${latLong}`
+          }).then(resp => {
+
+          })
+        })
+
+      }
+
+      function markComplete() {
+        var title = document.getElementById('exactTitle').value;
+
+        axios({
+          method: "GET",
+          url: "/fetchNumIssues"
+        }).then(resp1 => {
+
+          axios({
+            method: "GET",
+            url: "/fetchNumCompleted"
+          }).then(resp2 => {
+
+            axios({
+              method: "GET",
+              url: `/completeIssue?title=${title}&numCompleted=${resp2.data}&numIssues=${resp1.data}`
+            }).then(resp => {
+
+
+            })
+          })
+        })
+      }
+    </script>
+
+
+    <script th:inline="javascript">
+      var geojson = {
+        "type": "FeatureCollection",
+        "features": [
+        ]
+      };
+
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+
+      async function buildLocationList(locations) {
+        await new Promise(resolve => setTimeout(resolve, 6000));
+        for (const location of locations.features) {
+
+          const listings = document.getElementById('listings');
+          const listing = listings.appendChild(document.createElement('div'));
+          listing.id = `listing-${location.properties.id}`;
+          listing.className = 'item';
+
+          const link = listing.appendChild(document.createElement('a'));
+          link.href = '/';
+          link.className = 'title';
+          link.id = `link-${location.properties.id}`;
+          link.innerHTML = `${location.properties.title} - ${location.properties.address}`;
+
+          /* Add details to the individual listing. */
+          const details = listing.appendChild(document.createElement('div'));
+          details.innerHTML = `${location.properties.description}<br> <strong>Contact</strong>: ${location.properties.contact}`;
+
+
+
+
+        }
+      }
+
+      function call() {
+        sleep(6000);
+        buildLocationList(geojson);
+      }
+      navigator.geolocation.getCurrentPosition(function (position) {
+        let lat = position.coords.latitude;
+        let long = position.coords.longitude;
+
+        // var map = L.map('map').setView([lat, long], 20);
+
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZ3JhbmQ2IiwiYSI6ImNqb3FjM2IzdDAxY2Eza252aXp1aDcybmwifQ.Sp7OsuHHEq1ZK7DgVTgO-w';
+
+        const map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/light-v10',
+          center: [long, lat],
+          zoom: 3
+        });
+        map.addControl(new mapboxgl.NavigationControl());
+
+        map.addControl(new mapboxgl.AttributionControl({
+          customAttribution: 'Design and functionality by Nolan Platt | GitHub @nolanplatt | All Rights Reserved'
+        }));
+
+
+
+        var numIssues;
+        //Fetch Num Elements
+
+        axios({
+          method: "GET",
+          url: "/fetchNumReports"
+        }).then(resp => {
+          document.getElementById("totalReports").innerText = "Number of Reports (all time): " + resp.data
+
+        })
+
+        axios({
+          method: "GET",
+          url: "/fetchNumCompleted"
+        }).then(resp => {
+          document.getElementById("completedIssues").innerText = "Number of Completed Issues: " + resp.data
+
+        })
+
+
+
+        axios({
+          method: "GET",
+          url: "/fetchNumIssues"
+        }).then(resp => {
+          numIssues = resp.data;
+          document.getElementById("activeIssues").innerText = "Number of Active Issues: " + numIssues
+
+
+          // Fetch GeoJSON from Firebase via API
+          var isDone = false;
+          for (let i = 0; i < numIssues; i++) {
+
+
+            axios({
+              method: "GET",
+              url: "/fetchFromFirebase/?index=" + i
+            }).then(resp => {
+              var split = "";
+
+              split = resp.data.split('--');
+
+              let latLongSplit = split[0].split(",");
+              let lat = latLongSplit[0];
+              let long = latLongSplit[1];
+              //while(isDone == false) {
+
+              // middle of data
+
+
+              var geoJsonToAdd = {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": [
+                    lat,
+                    long
+                  ]
+                },
+                "properties": {
+                  "title": split[1],
+                  "description": split[2],
+                  "contact": split[3],
+                  "address": split[4],
+                }
+              };
+
+              geojson["features"].push(geoJsonToAdd);
+
+
+
+              map.addSource(Math.random(), {
+                "type": "geojson",
+                "data": {
+                  "type": "Feature",
+                  "geometry": {
+                    "type": "Point",
+                    "coordinates": [
+                      lat,
+                      long
+                    ]
+                  },
+                  "properties": {
+                    "title": split[1],
+                    "description": split[2],
+                    "contact": split[3],
+                    "address": split[4],
+                  }
+                }
+              });
+              addMarkers(geojson)
+
+
+
+
+
+            })
+
+
+          }
+        })
+
+
+
+
+        // End Fetch GeoJSON
+
+
+
+
+
+
+
+
+
+
+        function createPopUp(currentFeature) {
+          const popUps = document.getElementsByClassName('mapboxgl-popup');
+
+          if (popUps[0]) popUps[0].remove();
+
+          const popup = new mapboxgl.Popup({ closeOnClick: true })
+            .setLngLat(currentFeature.geometry.coordinates)
+            .setHTML(`<h3>${currentFeature.properties.title}</h3><h4>${currentFeature.properties.description}</h4>`)
+            .addTo(map);
+        }
+
+        function addMarkers(locations) {
+          for (const marker of locations.features) {
+            const el = document.createElement('div');
+            el.id = `marker-${marker.properties.id}`;
+            el.className = 'marker';
+
+
+            new mapboxgl.Marker(el, { offset: [0, -23] })
+              .setLngLat(marker.geometry.coordinates)
+              .addTo(map);
+
+
+
+            el.addEventListener('click', (e) => {
+
+              createPopUp(marker);
+              e.stopPropagation();
+            });
+
+          }
+        }
+
+
+      });
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>...</title>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.1.0/mdb.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Begin navigation fragments -->
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="header"> -->
+    <nav class="navbar navbar-expand-lg navbar-dark indigo bg-dark" th:fragment="header">
+        <a class="navbar-brand" href="/">EnvMapper</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/map">Map</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navBarAccount" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Surveys
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/envHabitsSurvey">Environmental Habits Survey</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navBarAccount" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Calculators
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/solarCalculator">Savings with Solar Calculator</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navBarAccount" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Files
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/fileupload">File Upload/Download</a>
+                        <a class="dropdown-item" href="/">View Data</a>
+                    </div>
+                </li>
+            </ul>
+            <!-- <span class="nav-item">
+                <a class="nav-link text-white-50" href="/users/login">Account</a>
+            </span> -->
+        </div>
+    </nav>
+</body>
+
+</html>

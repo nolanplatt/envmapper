@@ -1,0 +1,10 @@
+.loginsignup-container {
+    display: flex;
+    justify-content: center;
+}
+
+.form-container {
+    flex: 1;
+    max-width: 700px;
+    /* background-color: red; */
+}
